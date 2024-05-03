@@ -1,3 +1,4 @@
+/* general stuff */
 *{
     margin:0;
     padding:0;
@@ -17,17 +18,32 @@ h1{
     text-align: center;
 }
 
+body{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+footer{
+    height: 10vh;
+    width: 100vw;
+}
+
 nav{
     background-color: #333;
-    color: #fff;
+    color: #e6a5a5;
     text-align: center;
-    padding: 20px 0;
+    padding: 1% 0;
     margin: 0 2vw;
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
+    align-items: center;
     max-height: 5vh;
+    width: 100vw;
     border-bottom: 1px solid red;
-
 }
 
 nav ul{
@@ -46,3 +62,47 @@ nav ul li a{
     text-decoration: none;
     color: white;
 }
+
+/* quiz file */
+
+#question{
+    width: 60vw;
+    height: 50vh;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#answers{
+    width: 30vw;
+    height: 30vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.answer-button{
+    width: calc(50% - 5px);
+    height: 5vh;
+    max-height: 9vh;
+    background-color: white;
+    color: #333;
+    border-radius: 1%;
+    text-align: center; /* Centers the content horizontally */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center;
+}
+
+.answer-button:hover{
+    cursor: pointer;
+    background-color: #9c9c9c;
+    border: 3px dashed yellow;
+}
+
+

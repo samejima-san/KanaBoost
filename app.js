@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 //register view engine
 app.set('view engine', 'ejs');
+const Kana = require('./models/kana');
 //app.set('views', views);
 //this is how you set the views directory the second argument is the directory
 //but it defaults to views so you dont have to do it
@@ -15,6 +16,7 @@ app.use(morgan('dev'));
 app.use(express.static('public'));
 
 const dbURI = process.env.DBCREDS;
+
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((result) => app.listen(3000))
 .catch((err) => console.log(err));
@@ -40,4 +42,12 @@ app.get('/', (req, res) => {
 
 app.get('/play', (req, res) =>{
     res.render('quiz',{title: 'Would You Lose?'} )
-})
+    Kana.find()
+    .then((result)=>{
+        console.log(result);
+        console.log("would you lose?");
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+});
