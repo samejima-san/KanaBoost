@@ -7,6 +7,7 @@ require('dotenv').config();
 //register view engine
 app.set('view engine', 'ejs');
 const Kana = require('./models/kana');
+const { forEach } = require('lodash');
 //app.set('views', views);
 //this is how you set the views directory the second argument is the directory
 //but it defaults to views so you dont have to do it
@@ -40,14 +41,27 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
 
-app.get('/play', (req, res) =>{
-    res.render('quiz',{title: 'Would You Lose?'} )
-    Kana.find()
-    .then((result)=>{
-        console.log(result);
-        console.log("would you lose?");
-    })
-    .catch((err)=>{
+app.get('/play', async (req, res) => {
+    try {
+        const kanaNumbers = [];
+        
+        while (kanaNumbers.length < 4) {
+            let randNum = Math.floor(Math.random() * 46);
+            if (!kanaNumbers.includes(randNum)) {
+                kanaNumbers.push(randNum);
+            }
+        }
+        console.log(kanaNumbers);
+
+        const kanaArray = await Promise.all(
+            kanaNumbers.map((index) => Kana.findOne({},  { __v: 0 }, { skip: index }))
+        );
+
+        console.log(kanaArray);
+        console.log("Would you lose?");
+        res.render('quiz', { title: 'Would You Lose?', kana: kanaArray });
+    } catch (err) {
+        console.log("here");
         console.log(err);
-    });
+    }
 });

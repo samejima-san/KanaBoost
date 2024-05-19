@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/header') %>
-<body>
+<body> <!-- kana[i].romaji, kana[i].hiragana, kana[i].katakana -->
     <%- include('./partials/nav') %>
     <div id="question">
-        <h2>question</h2>
+        <h2> <%= kana[0].hiragana %></h2>
         <div id="answers">
-            <p class="answer-button" >1</p>
-            <p class="answer-button" >2</p>
-            <p class="answer-button" >3</p>
-            <p class="answer-button" >4</p>
+            <p class="answer-button" ><%= kana[0].katakana %></p>
+            <p class="answer-button" ><%= kana[1].katakana %></p>
+            <p class="answer-button" ><%= kana[2].katakana %></p>
+            <p class="answer-button" ><%= kana[3].katakana %></p>
         </div>
         <h3>Time: 60</h3>
     </div>
